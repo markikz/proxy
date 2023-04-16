@@ -23,13 +23,9 @@ app.get('/redirect', async (req, res) => {
         redirect(decodeURIComponent(req.query.address))
             .then(response => {
                 res.status(response.status);
-                return response;
-            })
-            .then(response => {
-                return response.json();
+                return response.text();
             })
             .then(data => {
-                console.log(data);
                 res.send(data);
             })
             .catch(err =>{
@@ -37,7 +33,7 @@ app.get('/redirect', async (req, res) => {
                 res.send('{"success": false}')
             });
     } else {
-        res.send('{"result":"bad key"}');
+        res.send('{"success": false, "result":"bad key"}');
     }
 });
 
