@@ -20,7 +20,7 @@ function redirect(address) {
 
 app.get('/redirect', async (req, res) => {
     if (req.query.key === PROXY_KEY) {
-        redirect(decodeURIComponent(req.query.address))
+        redirect(req.query.address)
             .then(response => {
                 res.status(response.status);
                 return response.text();
